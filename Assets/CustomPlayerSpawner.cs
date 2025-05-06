@@ -12,12 +12,12 @@ public class CustomPlayerSpawner : MonoBehaviour
     if (NetworkManager.Singleton != null)
     {
         NetworkManager.Singleton.AddNetworkPrefab(playerPrefab);
-        Debug.Log("✅ Registered player prefab via AddNetworkPrefab");
+        Debug.Log("Registered player prefab via AddNetworkPrefab");
         NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
     }
     else
     {
-        Debug.LogError("❌ NetworkManager.Singleton is null in Start. Ensure NetworkManager is in the scene and enabled.");
+        Debug.LogError("NetworkManager.Singleton is null in Start. Ensure NetworkManager is in the scene and enabled.");
     }
 }
 

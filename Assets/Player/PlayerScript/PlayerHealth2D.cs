@@ -43,21 +43,17 @@ public class PlayerHealth2D : NetworkBehaviour
 
     private System.Collections.IEnumerator HandleDeath()
     {
-        // Disable input
         DisablePlayerClientRpc();
 
-        // Optionally hide sprite
         GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(respawnDelay);
 
-        // Respawn
         currentHealth.Value = maxHealth;
         Transform randomSpawn = SpawnManager.Instance.GetRandomSpawnPoint();
         transform.position = randomSpawn ? randomSpawn.position : Vector3.zero;
 
 
-        // Show player again
         GetComponentInChildren<SpriteRenderer>().enabled = true;
 
         EnablePlayerClientRpc();

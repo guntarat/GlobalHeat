@@ -14,9 +14,5 @@ public class PlayerCameraController : NetworkBehaviour
 
         // For regular camera
         myCameraInstance.GetComponent<CameraFollowSimple>().SetTarget(transform);
-
-        // Or for Cinemachine:
-        // var vcam = myCameraInstance.GetComponent<Cinemachine.CinemachineVirtualCamera>();
-        // vcam.Follow = transform;
     }
 }
