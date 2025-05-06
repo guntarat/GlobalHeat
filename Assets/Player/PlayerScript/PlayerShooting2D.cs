@@ -7,6 +7,7 @@ public class PlayerShooting2D : NetworkBehaviour
     public Transform firePoint;     // Where the raycast starts
     public float fireDistance = 10f;
     public LayerMask hitLayers;
+    [SerializeField] private AudioSource shootAudio;
 
     private void Update()
     {
@@ -25,7 +26,8 @@ void ShootServerRpc()
     Vector2 origin = firePoint.position;
 
     RaycastHit2D hit = Physics2D.Raycast(origin, direction, fireDistance, hitLayers);
-
+    if (shootAudio != null)
+                shootAudio.Play();
     Vector2 endPoint = origin + direction * fireDistance;
     if (hit.collider != null)
     {

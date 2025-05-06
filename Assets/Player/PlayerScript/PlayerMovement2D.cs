@@ -9,6 +9,7 @@ public class PlayerMovement2D : NetworkBehaviour
     
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private AudioSource jumpAudio;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class PlayerMovement2D : NetworkBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (jumpAudio != null)
+                jumpAudio.Play();
         }
     }
 
