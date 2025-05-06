@@ -23,6 +23,13 @@ public class PlayerHealth2D : NetworkBehaviour
         currentHealth.Value = maxHealth;
     }
 }
+ public void HealToMax()
+    {
+        if (IsServer)
+        {
+            currentHealth.Value = maxHealth;
+        }
+    }
 
     public void TakeDamage(int amount, Vector2 knockbackDirection)
     {
@@ -58,6 +65,11 @@ public class PlayerHealth2D : NetworkBehaviour
 
         EnablePlayerClientRpc();
         isDead = false;
+    }
+    [ServerRpc]
+    public void RequestHealToMaxServerRpc()
+    {   
+        currentHealth.Value = maxHealth;
     }
 
     [ClientRpc]
