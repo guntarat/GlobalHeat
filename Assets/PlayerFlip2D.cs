@@ -5,9 +5,20 @@ public class PlayerFlip2D : MonoBehaviour
     private Camera mainCam;
 
     void Start()
+{
+    mainCam = Camera.main;
+
+    if (mainCam == null)
     {
-        mainCam = Camera.main;
+        // Fallback: find any camera in the scene
+        mainCam = FindObjectOfType<Camera>();
+        if (mainCam == null)
+        {
+            Debug.LogError("No camera found! Make sure a camera is active and tagged.");
+        }
     }
+}
+
 
     void Update()
     {
