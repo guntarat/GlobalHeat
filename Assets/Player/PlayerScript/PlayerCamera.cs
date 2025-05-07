@@ -17,14 +17,23 @@ public class PlayerCamera : NetworkBehaviour
     {
         if (IsServer)
         {
-            UserData userData = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
-
-            PlayerName.Value = userData.userName;
+            var server = HostSingleton.Instance?.GameManager?.NetworkServer;
+            if (server != null)
+            {
+                var userData = server.GetUserDataByClientId(OwnerClientId);
+                Debug.Log($"[SetName] userName = {userData.userName}");
+                PlayerName.Value = userData.userName;
+            }
+            else
+            {
+                Debug.LogError("[PlayerCamera] NetworkServer not ready yet!");
+            }
         }
-        
+
         if (IsOwner)
         {
             virtualCamera.Priority = ownerPriority;
         }
     }
+
 }
