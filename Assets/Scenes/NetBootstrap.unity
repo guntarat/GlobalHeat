@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1487aa9a07d397040bd843c2514c7825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joinCodeField: {fileID: 0}
 --- !u!1 &1378125394
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +831,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1979719801}
-    PlayerPrefab: {fileID: 0}
+    PlayerPrefab: {fileID: 7494393736852156226, guid: 9f4ab9363e50ba244a577e9ed18bad5e, type: 3}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: da836c85a1c4e234fb4334470c6b813a, type: 2}
