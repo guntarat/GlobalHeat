@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraFollowSimple : MonoBehaviour
 {
     private Transform target;
-    public Vector3 offset = new Vector3(0, 1.5f, -10);
+
+    public Vector3 offset = new Vector3(0, 0, -10);
     public float followSpeed = 5f;
 
     public void SetTarget(Transform newTarget)
@@ -11,9 +12,9 @@ public class CameraFollowSimple : MonoBehaviour
         target = newTarget;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        if (!target) return;
+        if (target == null) return;
         transform.position = Vector3.Lerp(transform.position, target.position + offset, followSpeed * Time.deltaTime);
     }
 }

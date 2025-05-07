@@ -722,9 +722,6 @@ PrefabInstance:
       addedObject: {fileID: -4296374043254635289}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: d6099f690f7eda740a6140fe0aa43d64, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8030327866506687748}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: d6099f690f7eda740a6140fe0aa43d64, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5267931185132708550}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: d6099f690f7eda740a6140fe0aa43d64, type: 3}
       insertIndex: -1
@@ -948,20 +945,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &8030327866506687748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7494393736852156226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88a22146f4e37b3479bdeeca203b20b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  cameraPrefab: {fileID: 2447750305951816658, guid: 53aad5baa8b12f24f966b6eccf7be112, type: 3}
 --- !u!95 &5267931185132708550
 Animator:
   serializedVersion: 7

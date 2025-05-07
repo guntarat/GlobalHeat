@@ -4,24 +4,15 @@ public class PlayerFlip2D : MonoBehaviour
 {
     private Camera mainCam;
 
-    void Start()
-{
-    mainCam = Camera.main;
-
-    if (mainCam == null)
-    {
-        // Fallback: find any camera in the scene
-        mainCam = FindObjectOfType<Camera>();
-        if (mainCam == null)
-        {
-            Debug.LogError("No camera found! Make sure a camera is active and tagged.");
-        }
-    }
-}
-
-
     void Update()
     {
+        if (mainCam == null || !mainCam.enabled)
+        {
+            mainCam = FindActiveCamera();
+        }
+
+        if (mainCam == null) return;
+
         Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         if (mousePos.x < transform.position.x)
         {
@@ -31,5 +22,15 @@ public class PlayerFlip2D : MonoBehaviour
         {
             transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
+    }
+
+    private Camera FindActiveCamera()
+    {
+        Camera[] allCams = Camera.allCameras;
+        foreach (Camera cam in allCams)
+        {
+            if (cam.enabled) return cam;
+        }
+        return null;
     }
 }

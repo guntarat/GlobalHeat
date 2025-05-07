@@ -19,7 +19,7 @@ public class LobbyManager : MonoBehaviour
         if (!string.IsNullOrEmpty(nameInput.text))
         {
             PlayerName = nameInput.text;
-            SceneManager.LoadScene("CaveMap"); 
+            SceneManager.LoadScene("LobbySelect"); 
         }
     }
 }
