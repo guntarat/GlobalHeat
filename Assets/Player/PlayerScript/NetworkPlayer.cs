@@ -7,8 +7,8 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (IsServer)
         {
-            Transform randomSpawn = CustomPlayerSpawner.Instance.GetRandomSpawnPoint();
-            transform.position = randomSpawn.position;
+            Transform spawnPoint = CustomPlayerSpawner.Instance.GetRandomSpawnPoint();
+            transform.position = spawnPoint.position;
         }
     }
 }
