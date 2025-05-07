@@ -89,6 +89,20 @@ public class NetworkServer
 
     }
 
+    public UserData GetUserDataByClientId(ulong clientId)
+    {
+        if (clientIdToAuth.TryGetValue(clientId,out string authId))
+        {
+            if (authIdToUserData.TryGetValue(authId,out UserData data))
+            {
+                return data;
+            }
+
+            return null;
+        }
+
+        return null;
+    }
 }
 
 

@@ -39,7 +39,7 @@ public class HostGameManager
     private string lobbyId;
 
 
-    private NetworkServer networkServer;
+    public NetworkServer NetworkServer { get; private set; }
 
 
     private const int MaxConnections = 20;
@@ -155,7 +155,7 @@ RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
         }
 
 
-        networkServer = new NetworkServer(NetworkManager.Singleton);
+        NetworkServer = new NetworkServer(NetworkManager.Singleton);
 
         
 
@@ -203,6 +203,24 @@ LoadSceneMode.Single);
         }
 
     }
+
+    /*public async void Dispose()
+    {
+        HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
+        if (!string.IsNullOrEmpty(lobbyId))
+        {
+            try
+            {
+                await Lobbies.Instance.DeleteLobbyAsync(lobbyId);
+            }
+            catch (LobbyServiceException e)
+            {
+                Debug.Log(e);
+            }
+        }
+
+        NetworkServer?.Dispose();
+    }*/
 
 }
 
