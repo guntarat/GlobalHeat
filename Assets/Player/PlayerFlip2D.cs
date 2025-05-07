@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerFlip2D : MonoBehaviour
+public class PlayerFlip2D : NetworkBehaviour
 {
     private Camera mainCam;
 
