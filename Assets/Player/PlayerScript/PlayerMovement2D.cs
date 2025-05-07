@@ -36,20 +36,4 @@ public class PlayerMovement2D : NetworkBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
-    public override void OnNetworkSpawn()
-{
-    if (!IsOwner) return;
-
-    Debug.Log("[Camera] Setting target for local player");
-
-    var camFollow = Camera.main?.GetComponent<CameraFollowSimple>();
-    if (camFollow != null)
-    {
-        camFollow.SetTarget(transform);
-    }
-    else
-    {
-        Debug.LogWarning("CameraFollowSimple not found on MainCamera.");
-    }
-}
 }
