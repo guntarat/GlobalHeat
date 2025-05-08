@@ -13,7 +13,7 @@ public class NetworkClient
 
     private NetworkManager networkManager;
 
-    private const string MenuSceneName = "Menu";
+    private const string MenuSceneName = "Lobby";
 
 
     public NetworkClient(NetworkManager networkManager)

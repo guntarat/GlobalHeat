@@ -57,8 +57,8 @@ public class PlayerHealth2D : NetworkBehaviour
         yield return new WaitForSeconds(respawnDelay);
 
         currentHealth.Value = maxHealth;
-        Transform randomSpawn = SpawnManager.Instance.GetRandomSpawnPoint();
-        transform.position = randomSpawn ? randomSpawn.position : Vector3.zero;
+        //Transform randomSpawn = SpawnManager.Instance.GetRandomSpawnPoint();
+        //transform.position = randomSpawn ? randomSpawn.position : Vector3.zero;
 
 
         GetComponentInChildren<SpriteRenderer>().enabled = true;

@@ -12,14 +12,13 @@ public class PlayerCamera : NetworkBehaviour
     [SerializeField] private int ownerPriority = 15;
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
-    
-    
 
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
-            UserData userData = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
+            UserData userData =
+                HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
 
             PlayerName.Value = userData.userName;
         }
@@ -29,5 +28,4 @@ public class PlayerCamera : NetworkBehaviour
             virtualCamera.Priority = ownerPriority;
         }
     }
-
 }
