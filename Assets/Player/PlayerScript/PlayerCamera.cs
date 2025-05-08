@@ -1,31 +1,38 @@
 using Unity.Netcode;
 using UnityEngine;
 using Unity.Cinemachine;
-using Unity.Collections;
 
 public class PlayerCamera : NetworkBehaviour
 {
-    [Header("References")]
     [SerializeField] private CinemachineCamera virtualCamera;
-
-    [Header("Settings")]
     [SerializeField] private int ownerPriority = 15;
-
-    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
     public override void OnNetworkSpawn()
     {
-        if (IsServer)
+        if (!IsOwner)
         {
-            UserData userData =
-                HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
-
-            PlayerName.Value = userData.userName;
+            virtualCamera.gameObject.SetActive(false);
+            return;
         }
 
-        if (IsOwner)
+        if (virtualCamera == null)
         {
-            virtualCamera.Priority = ownerPriority;
+            Debug.LogWarning("[PlayerCamera] Missing virtual camera.");
+            return;
         }
+
+        // Enable the scene's main camera with CinemachineBrain
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
+        {
+            mainCam.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Main Camera not found in scene.");
+        }
+
+        virtualCamera.gameObject.SetActive(true);
+        virtualCamera.Priority = ownerPriority;
     }
 }

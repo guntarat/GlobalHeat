@@ -4,9 +4,12 @@ using UnityEngine;
 public class PlayerFlip2D : NetworkBehaviour
 {
     private Camera mainCam;
+    private bool facingRight = true;
 
     void Update()
     {
+        if (!IsOwner) return;
+
         if (mainCam == null || !mainCam.enabled)
         {
             mainCam = FindActiveCamera();
@@ -15,14 +18,23 @@ public class PlayerFlip2D : NetworkBehaviour
         if (mainCam == null) return;
 
         Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x < transform.position.x)
+
+        if (mousePos.x < transform.position.x && facingRight)
         {
-            transform.localScale = new Vector3(-0.2f, 0.2f, 0.2f);
+            Flip();
         }
-        else
+        else if (mousePos.x > transform.position.x && !facingRight)
         {
-            transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            Flip();
         }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     private Camera FindActiveCamera()

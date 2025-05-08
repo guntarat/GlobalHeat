@@ -47,29 +47,28 @@ public class HostGameManager
     private const string GameSceneName = "CaveMap";
 
     private const string JoinCodeKey = "JoinCode";
-
+    
     public async Task StartHostAsync()
-
+{
+    try
     {
+        allocation = await RelayService.Instance.CreateAllocationAsync(MaxConnections);
+        joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+        Debug.Log(joinCode);
 
-        try
+        // Store the Join Code for later use
+        PlayerPrefs.SetString(JoinCodeKey, joinCode);
+        PlayerPrefs.Save();
 
-        {
+        // Load the scene that contains the RelayUIManager to display the join code
+        //SceneManager.LoadScene("RelayUISceneName"); // Replace with actual scene name
+    }
+    catch (Exception e)
+    {
+        Debug.LogError(e);
+        return;
+    }
 
-            allocation = await RelayService.Instance.CreateAllocationAsync(MaxConnections);
-
-
-        }
-
-        catch(Exception e)
-
-        {
-
-            Debug.Log(e);
-
-            return;
-
-        }
 
         try
 
